@@ -1,11 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
+  	<script type="text/javascript" src="/javascripts/jquery-2.1.3.min.js"  ></script>
+  	<script type="text/javascript">
+  	$(document).ready(function(){
+  		$(".compile").click(function(){  
+  		$.ajax({
+          method:"POST",
+          url: "compileCode",
+          data:{codeText : $("#code").val()}
+        }).done(function() {                  
+         alert("sucess");
+        }).fail(function(){
+          alert("fail");
+      });   
+  	});
+  	});
+  	</script>
     <title>{{ title }}</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
     <h1>{{ title }}</h1>
     <p>Welcome to {{ title }}</p>
+    <input type="button" class="compile" value="API call"/>
+    <textarea id="code">
+     #include<stdio.h> 
+void main()
+{ printf("hello world"); }
+    </textarea>
   </body>
 </html>
